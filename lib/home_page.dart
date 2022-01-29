@@ -17,15 +17,15 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text("Home", style: TextStyle(color: Colors.black),),
+        title: const Text("Home", style: TextStyle(color: Colors.black),),
         actions: [
           IconButton(onPressed: (){
             Navigator.push(context, MaterialPageRoute(builder: (ctx) => NotificationPage()));
-          }, icon: Icon(Icons.notifications, color: greyColor,)),
+          }, icon: const Icon(Icons.notifications, color: greyColor,)),
 
           IconButton(onPressed: (){
             Navigator.push(context, MaterialPageRoute(builder: (ctx) => DirectMessagePage()));
-          }, icon: Icon(Icons.send, color: greyColor))
+          }, icon: const Icon(Icons.send, color: greyColor))
         ],
       ),
     );

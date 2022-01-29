@@ -11,8 +11,8 @@ class NotificationPage extends StatefulWidget {
 class _NotificationPageState extends State<NotificationPage> {
 
   Widget notiItem(String content) => Container(
-    margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+    margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
     child: Column(
       children: [
         Divider(height: 1, color: greyColor),
@@ -41,7 +41,8 @@ class _NotificationPageState extends State<NotificationPage> {
       body: ListView(
         children: [
           notiItem("김청도님이 좋아요를 누르며 비웃습니다"),
-          notiItem("김청도님이 회원님의 게시글을 고소하였습니다")
+          notiItem("김청도님이 회원님의 게시글을 고소하였습니다"),
+          notiItem("김청도님이 디엠을 보냈습니다")
         ],
       ),
     );
