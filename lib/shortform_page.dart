@@ -1,4 +1,6 @@
+import 'package:cameratest/url_list.dart';
 import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
 
 import 'color.dart';
 
@@ -11,13 +13,61 @@ class ShortFormPage extends StatefulWidget {
 
 
 class _ShortFormPageState extends State<ShortFormPage> {
+  VideoPlayerController? _controller;
+  List<String> urls = [video1, video2];
+  @override
+  void initState() {
+    super.initState();
+    _controller = VideoPlayerController.network(
+        video1)
+      ..initialize().then((_) {
+        setState(() {});
+      });
+    _controller?.setLooping(true);
+    _controller?.setVolume(0.0);
+    _controller?.play();
+  }
+  @override
+  void dispose() {
+    super.dispose();
+    _controller!.dispose();
+  }
 
-  Widget buildShortForm(Color color) => Container(
+  Widget buildShortForm() => Container(
     width: MediaQuery.of(context).size.width,
     height: MediaQuery.of(context).size.height,
-    color: color,
     child: Stack(
       children: [
+        SizedBox.expand(
+          child: FittedBox(
+            fit: BoxFit.cover,
+            child: SizedBox(
+              width: _controller!.value.size.width,
+              height: _controller!.value.size.height,
+              child: InkWell(child: VideoPlayer(_controller!), onTap: () => setState(() {
+                _controller!.value.isPlaying
+                    ? _controller!.pause()
+                    : _controller!.play();
+              }),),
+            ),
+          ),
+        ),
+        /*Positioned(child: InkWell(
+          child: Container(
+            child: _controller!.value.isInitialized
+                ? AspectRatio(
+              aspectRatio: MediaQuery.of(context).devicePixelRatio,
+              child: VideoPlayer(_controller!),
+            )
+                : Container(),
+          ),
+          onTap: () => setState(() {
+            _controller!.value.isPlaying
+                ? _controller!.pause()
+                : _controller!.play();
+          }),
+        )
+        ),*/
         Positioned(child: Container(
           child: Column(
             children:  [
@@ -129,11 +179,21 @@ class _ShortFormPageState extends State<ShortFormPage> {
       body: PageView(
         scrollDirection: Axis.vertical,
         children: [
-          buildShortForm(Colors.yellow),
-          buildShortForm(Colors.red),
-          buildShortForm(Colors.green),
-          buildShortForm(Colors.blue),
+          buildShortForm(),
+          buildShortForm(),
+          buildShortForm(),
+          buildShortForm(),
         ],
+        onPageChanged: (idx){
+          _controller = VideoPlayerController.network(
+              urls[idx%2])
+            ..initialize().then((_) {
+              setState(() {});
+            });
+          _controller?.setLooping(true);
+          _controller?.setVolume(0.0);
+          _controller?.play();
+        },
       ),
     );
   }

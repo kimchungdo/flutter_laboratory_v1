@@ -1,4 +1,5 @@
 import 'package:cameratest/shortform_page.dart';
+import 'package:cameratest/video_page.dart';
 import 'package:flutter/material.dart';
 
 import 'camera_page.dart';
@@ -39,13 +40,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _widgetOptions.elementAt(_selectedIndex),
-      floatingActionButton: FloatingActionButton(
+      /*floatingActionButton: FloatingActionButton(
         onPressed: (){
           Navigator.push(context, MaterialPageRoute(builder: (context)=> CameraExample()));
         },
         tooltip: 'camera',
         child: const Icon(Icons.camera),
-      ),
+      ),*/
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: _selectedIndex == 0 ? Colors.black : Colors.white,
@@ -87,16 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     const HomePage(),
 
-    Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const <Widget>[
-          Text(
-            'dont click Floating Action Button to Activate Camera',
-          ),
-        ],
-      ),
-    ),
+    VideoPage(),
 
     Center(
       child: Column(

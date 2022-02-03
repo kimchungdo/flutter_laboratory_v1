@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-void main() => runApp(VideoApp());
-
-class VideoApp extends StatefulWidget {
+class VideoPage extends StatefulWidget {
   @override
-  _VideoAppState createState() => _VideoAppState();
+  _VideoPageState createState() => _VideoPageState();
 }
 
-class _VideoAppState extends State<VideoApp> {
+class _VideoPageState extends State<VideoPage> {
   VideoPlayerController? _controller;
 
   @override
