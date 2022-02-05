@@ -11,7 +11,7 @@ class ShortFormPage extends StatefulWidget {
   _ShortFormPageState createState() => _ShortFormPageState();
 }
 
-
+//비디오 컨트롤러 여러개로 두고 할 수 있는 방법 찾아야함..
 class _ShortFormPageState extends State<ShortFormPage> {
   VideoPlayerController? _controller;
   List<String> urls = [video1, video2];
