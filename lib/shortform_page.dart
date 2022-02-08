@@ -14,6 +14,7 @@ class ShortFormPage extends StatefulWidget {
 //비디오 컨트롤러 여러개로 두고 할 수 있는 방법 찾아야함..
 class _ShortFormPageState extends State<ShortFormPage> {
   VideoPlayerController? _controller;
+  VideoPlayerController? _tempController;
   List<String> urls = [video1, video2];
   @override
   void initState() {
@@ -52,22 +53,6 @@ class _ShortFormPageState extends State<ShortFormPage> {
             ),
           ),
         ),
-        /*Positioned(child: InkWell(
-          child: Container(
-            child: _controller!.value.isInitialized
-                ? AspectRatio(
-              aspectRatio: MediaQuery.of(context).devicePixelRatio,
-              child: VideoPlayer(_controller!),
-            )
-                : Container(),
-          ),
-          onTap: () => setState(() {
-            _controller!.value.isPlaying
-                ? _controller!.pause()
-                : _controller!.play();
-          }),
-        )
-        ),*/
         Positioned(child: Container(
           child: Column(
             children:  [
@@ -193,6 +178,14 @@ class _ShortFormPageState extends State<ShortFormPage> {
           _controller?.setLooping(true);
           _controller?.setVolume(0.0);
           _controller?.play();
+          /*_tempController = VideoPlayerController.network(
+              urls[idx%2])
+            ..initialize().then((_) {
+              setState(() {});
+            });
+          _tempController?.setLooping(true);
+          _tempController?.setVolume(0.0);
+          _tempController?.play();*/
         },
       ),
     );
