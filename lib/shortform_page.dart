@@ -145,7 +145,6 @@ class _ShortFormPageState extends State<ShortFormPage> {
               Divider(color: lightGreyColor, height: 1, thickness: 1,),
             ],
           ),
-          //decoration: BoxDecoration(borderRadius: BorderRadius.only(topRight: Radius.circular(30), topLeft: Radius.circular(30))),
         );
       });
 
@@ -178,17 +177,9 @@ class _ShortFormPageState extends State<ShortFormPage> {
           _controller?.setLooping(true);
           _controller?.setVolume(0.0);
           _controller?.play();
-          /*_tempController = VideoPlayerController.network(
-              urls[idx%2])
-            ..initialize().then((_) {
-              setState(() {});
-            });
-          _tempController?.setLooping(true);
-          _tempController?.setVolume(0.0);
-          _tempController?.play();*/
+
         },
       ),
     );
   }
 }
-//ㅇㅗ늘 회사에서 한일이 너무많아서 오늘은 쉴래요 트레쉬커밋 무야호
