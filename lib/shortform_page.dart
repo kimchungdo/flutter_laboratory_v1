@@ -1,7 +1,7 @@
 import 'package:cameratest/url_list.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
-
+import 'package:share_plus/share_plus.dart';
 import 'color.dart';
 
 class ShortFormPage extends StatefulWidget {
@@ -33,6 +33,47 @@ class _ShortFormPageState extends State<ShortFormPage> {
     super.dispose();
     _controller!.dispose();
   }
+
+  Widget buildSpeedSet() => Container(
+    color: Colors.black,
+    width: MediaQuery.of(context).size.width,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        InkWell(child: Text("0.5", style: TextStyle(color: Colors.white),), onTap: (){
+        setState(() {
+            _controller!.setPlaybackSpeed(0.5);
+            }
+          );
+        }),
+        InkWell(child: Text("0.7", style: TextStyle(color: Colors.white),), onTap: (){
+        setState(() {
+            _controller!.setPlaybackSpeed(0.7);
+            }
+          );
+        }),
+        InkWell(child: Text("1.0", style: TextStyle(color: Colors.white),), onTap: (){
+        setState(() {
+            _controller!.setPlaybackSpeed(1.0);
+            }
+          );
+        }),
+        InkWell(child: Text("1.5", style: TextStyle(color: Colors.white),), onTap: (){
+        setState(() {
+            _controller!.setPlaybackSpeed(1.5);
+            }
+          );
+        }),
+        InkWell(child: Text("2.0", style: TextStyle(color: Colors.white),), onTap: (){
+        setState(() {
+            _controller!.setPlaybackSpeed(2.0);
+            }
+          );
+        }),
+
+      ],
+    ),
+  );
 
   Widget buildShortForm() => Container(
     width: MediaQuery.of(context).size.width,
@@ -66,10 +107,15 @@ class _ShortFormPageState extends State<ShortFormPage> {
               SizedBox(height: 25),
               Icon(Icons.send, size: 30, color: Colors.white),
               SizedBox(height: 25),
-              Icon(Icons.share, size: 30, color: Colors.white)
+              InkWell(child: Icon(Icons.share, size: 30, color: Colors.white), onTap: (){
+                Share.share('hello Dorian');
+              },)
             ],
           ),
-        ), bottom: 30, right: 20),
+        ), bottom: 130, right: 20),
+
+        Positioned(child: buildSpeedSet(),
+        bottom: 100),
 
         Positioned(child: Container(
           child: Row(
@@ -156,17 +202,16 @@ class _ShortFormPageState extends State<ShortFormPage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: const Text("Home"),
-        actions: [
+        /*actions: [
           IconButton(onPressed: modalSample, icon: const Icon(Icons.add_to_photos_outlined))
-        ],
+        ],*/
       ),
       body: PageView(
         scrollDirection: Axis.vertical,
         children: [
           buildShortForm(),
           buildShortForm(),
-          buildShortForm(),
-          buildShortForm(),
+
         ],
         onPageChanged: (idx){
           _controller = VideoPlayerController.network(
